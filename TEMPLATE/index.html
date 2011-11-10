@@ -1,0 +1,61 @@
+<html>
+<head>
+  <!-- See http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <link rel="apple-touch-icon" href="images/appicon.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="images/appicon-ipad.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="images/appicon-iphone4.png" />
+
+  <link rel="apple-touch-startup-image" href="images/startup.png">
+
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+  <link rel="stylesheet" href="custom.css" />
+
+  <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+  <script src="custom.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+
+
+</head>
+<body>
+  <div data-role="page" id="home">
+    <div data-role="header">
+      <h1>Home</h1>
+    </div>
+    
+    <div data-role="content">
+      <ul data-role="listview" data-inset="true">
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+    
+    <div data-role="footer">
+      <p>&copy; 2011 <a href="http://DrDoane.com" rel="external">William Doane</a></p>
+    </div>
+  </div>
+
+
+
+
+  <div data-role="page" id="about" data-theme="b">
+    <div data-role="header" data-theme="b">
+      <h1>About</h1>
+    </div>
+    
+    <div data-role="content" data-theme="b">
+      <p class="center">This is an image of a newspaper!<br />
+      <img src="images/news.jpg" width="200" /></p>
+    </div>
+    
+    <div data-role="footer" data-theme="b">
+      <p>&copy; 2011 <a href="http://DrDoane.com" rel="external">William Doane</a></p>
+    </div>
+  </div>
+
+ 
+</body>
+</html>

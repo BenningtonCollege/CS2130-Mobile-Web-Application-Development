@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>Page Title</title> 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+  </head> 
+  <body> 
+
+    <div data-role="page" id="home">
+      <div data-role="header" data-theme="b">
+        <h1>Home</h1>
+      </div><!-- /header -->
+
+      <div data-role="content" data-theme="b"> 
+        <ul data-role="listview" data-theme="g" data-inset="true">
+        	<li><a href="#news">News</a></li>
+         	<li><a href="#sports">Sports</a></li>
+         	<li><a href="#about">About</a></li>
+         </ul>
+      </div><!-- /content -->
+
+      <div data-role="footer" data-theme="b">
+        <h4>&copy; 2011 Bennington College</h4>
+      </div>
+    </div><!-- /page -->
+
+
+
+
+    <div data-role="page" id="about">
+      <div data-role="header" data-theme="b">
+        <h1>About</h1>
+      </div><!-- /header -->
+
+      <div data-role="content" data-theme="b"> 
+        <p>Page content goes here.</p>    
+      </div><!-- /content -->
+
+      <div data-role="footer" class="ui-bar" data-theme="b">
+      	<a href="index.html" data-role="button" data-icon="delete">Remove</a>
+      	<a href="index.html" data-role="button" data-icon="plus">Add</a>
+      	<a href="index.html" data-role="button" data-icon="arrow-u">Up</a>
+      	<a href="index.html" data-role="button" data-icon="arrow-d">Down</a>
+      </div>
+    </div><!-- /page -->
+
+
+
+
+    <div data-role="page" id="news">
+      <div data-role="header" data-theme="b">
+        <h1>News</h1>
+      </div><!-- /header -->
+
+      <div data-role="content" data-theme="b"> 
+        <p>Page content goes here.</p>    
+      </div><!-- /content -->
+
+      <div data-role="footer" data-theme="b">
+        <h4>&copy; 2011 Bennington College</h4>
+      </div>
+    </div><!-- /page -->
+
+
+
+
+
+     <div data-role="page" id="sports">
+      <div data-role="header" data-theme="b">
+        <h1>Sports</h1>
+      </div><!-- /header -->
+
+      <div data-role="content" data-theme="b"> 
+        <p>You must download and add <a href="http://glyphish.com/">glyphish</a> to your project for the buttons below to display properly</p>    
+      </div><!-- /content -->
+
+     	<style>	
+      		.nav-glyphish-example .ui-btn .ui-btn-inner { 
+      		  padding-top: 40px !important; 
+      		}
+      		.nav-glyphish-example .ui-btn .ui-icon { 
+      		  width: 30px !important; 
+      		  height: 30px !important; 
+      		  margin-left: -15px !important; 
+      		  box-shadow: none !important; 
+      		  -moz-box-shadow: none !important; 
+      		  -webkit-box-shadow: none !important; 
+      		  -webkit-border-radius: 0 !important; 
+      		  border-radius: 0 !important; 
+      		}
+      		#chat .ui-icon { 
+      		  background:  url(glyphish-icons/09-chat-2.png) 50% 50% no-repeat; 
+      		  background-size: 24px 22px; 
+      		}
+      		#email .ui-icon { 
+      		  background:  url(glyphish-icons/18-envelope.png) 50% 50% no-repeat; 
+      		  background-size: 24px 16px;  
+      		}
+      		#gear .ui-icon { 
+      		  background:  url(glyphish-icons/19-gear.png) 50% 50% no-repeat;  
+      		  background-size: 22px 24px; 
+      		}
+      	</style>
+
+      	<div data-role="footer" class="nav-glyphish-example">
+      		<div data-role="navbar" class="nav-glyphish-example">
+      		<ul>
+      			<li><a href="#" data-theme="b" id="chat" data-icon="custom">Chat</a></li>
+      			<li><a href="#" data-theme="b" id="email" data-icon="custom">Email</a></li>
+      			<li><a href="#" data-theme="b" id="gear" data-icon="custom">Settings</a></li>
+      		</ul>
+      		</div>
+      	</div>
+    </div><!-- /page -->
+
+  </body>
+</html>
+
+
+
+
+
+
+
+

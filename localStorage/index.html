@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <title>Basic Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href='http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css' />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+        
+    <script>
+    
+    $(document).bind("mobileinit", function() {
+      $.mobile.page.prototype.options.addBackBtn = true;
+    });
+    
+     function submitForm() {
+       localStorage.firstname = $("#firstname").val();
+       localStorage.lastname  = $("#lastname").val();
+       history.back();
+     }
+    
+     $(document).bind("pagebeforeshow", function() {
+       // Using localStorage to control the text or images displayed on pages.
+       $("#useroption")[0].innerHTML = localStorage.firstname + " " + localStorage.lastname;
+       $("#profilePicture")[0].src = "images/" + localStorage.lastname.toLowerCase() + "-" + localStorage.firstname.toLowerCase() + ".jpg";
+       
+       // Setting the value of form fields
+       $("#firstname").val(localStorage.firstname);
+       $("#lastname").val(localStorage.lastname);
+     });
+    
+    </script>
+
+    <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+
+  </head>
+  <body>
+    <div data-role="page" id="home">
+      <div data-role="header">
+        <h1>Home</h1>
+      </div>
+
+      <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+          <li><a href="#userProfile" id="useroption">Option a</a></li>
+          <li><a href="#b">Option b</a></li>
+          <li><a href="#settings" data-transition="slideup">Settings</a></li>
+        </ul>
+      </div>
+
+      <div data-role="footer">
+        <p>2011</p>
+      </div>
+    </div>
+    
+    
+    
+    
+    <div data-role="page" id="settings">
+      <div data-role="header">
+        <h1>Settings</h1>
+      </div>
+      
+      <form id="myform" action="javascript:submitForm();" method="post" data-ajax="false">
+        
+      <div data-role="content">
+        <ul data-role="listview">
+          <li><label for="firstname">First name</label>
+              <input type="text" name="firstname" id="firstname"></li>
+          <li><label for="lastname">Last name</label>
+              <input type="text" name="lastname" id="lastname"></li>
+          <li><button name="submit" value="submit-value">Submit</button></li>
+        </ul>
+      </div>
+      
+      </form>
+ 
+      <div data-role="footer">
+        <p>2011</p>
+      </div>
+    </div>
+ 
+ 
+ 
+ 
+  
+   
+   <div data-role="page" id="userProfile">
+     <div data-role="header">
+       <h1>Profile</h1>
+     </div>
+            
+     <div data-role="content">
+       <img id="profilePicture" src="abc.jpg" />
+     </div>
+     
+
+     <div data-role="footer">
+       <p>2011</p>
+     </div>
+   </div>
+    
+    
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

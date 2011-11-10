@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>Basic Page</title>
+		<link rel="stylesheet" rel='noreferrer' href='http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css' />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+
+    <!-- The order of these script tags is important: options must be set before jQuery Mobile loads -->
+
+		<script>
+		
+		  $(document).bind("mobileinit", function() {
+            $.mobile.page.prototype.options.addBackBtn = true;
+       });
+      
+		</script>
+
+		<script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+		
+	</head>
+	<body>
+		<div data-role="page" id="home">
+			<div data-role="header">
+				<h1>Home</h1>
+			</div>
+
+			<div data-role="content">
+				<ul data-role="listview">
+					<li><a href="#news">News</a></li>
+					<li><a href="#sports">Sports</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+
+			<div data-role="footer">
+				<p>Copyright 2011 <a rel='noreferrer' href='http://DrDoane.com' rel="external">William Doane</a></p>
+			</div>
+		</div>
+
+		<div data-role="page" id="about" data-theme="b">
+			<div data-role="header" data-theme="b">
+				<h1>About</h1>
+			</div>
+
+			<div data-role="content" data-theme="b">
+				<p>This is an image of a newspaper!<br />
+				<img src="news.jpg" width="200" /></p>
+			</div>
+
+			<div data-role="footer" data-theme="b">
+				<p>Copyright 2011 <a rel='noreferrer' href='http://DrDoane.com' rel="external">William Doane</a></p>
+			</div>
+		</div>
+
+		<div data-role="page" id="sports">
+			<div data-role="header">
+				<h1>About</h1>
+			</div>
+
+			<div data-role="content">
+				<p>This is my about page</p>
+			</div>
+
+			<div data-role="footer">
+				<p>Copyright 2011 <a rel='noreferrer' href='http://DrDoane.com'>William Doane</a></p>
+			</div>
+		</div>
+
+		<div data-role="page" id="news">
+			<div data-role="header">
+				<h1>About</h1>
+			</div>
+
+			<div data-role="content">
+				<p>This is my about page</p>
+			</div>
+
+			<div data-role="footer">
+				<p>Copyright 2011 <a rel='noreferrer' href='http://DrDoane.com'>William Doane</a></p>
+			</div>
+		</div>
+
+	</body>
+</html>
