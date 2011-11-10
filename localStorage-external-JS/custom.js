@@ -2,7 +2,7 @@ $(document).bind("mobileinit", function() {
   $.mobile.page.prototype.options.addBackBtn = true;
 });
 
-$(document).bind("pagebeforeshow", function() {
+$(document).bind("pagebeforeshow", function(event, ui) {
   // Using localStorage to control the text or images displayed on pages.
   $("#useroption")[0].innerHTML = localStorage.firstname + " " + localStorage.lastname;
   $("#profilePicture")[0].src = "images/" + localStorage.lastname.toLowerCase() + "-" + localStorage.firstname.toLowerCase() + ".jpg";
