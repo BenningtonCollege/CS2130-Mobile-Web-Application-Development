@@ -6,6 +6,7 @@ $(document).bind("pagebeforeshow", function(event, ui) {
   // Using localStorage to control the text or images displayed on pages.
   $("#useroption")[0].innerHTML = localStorage.firstname + " " + localStorage.lastname;
   $("#profilePicture")[0].src = "images/" + localStorage.lastname.toLowerCase() + "-" + localStorage.firstname.toLowerCase() + ".jpg";
+  //           images/doane-william.jpg
 
   // Setting the value of form fields
   $("#firstname").val(localStorage.firstname);
