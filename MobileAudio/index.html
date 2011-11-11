@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href='http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css' />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+
+    <script>
+      $( '#sound1' ).live( 'pageshow',function(event){
+        $("#sound1-audio")[0].currentTime = 0;
+        $("#sound1-audio")[0].play();
+      });
+
+      $( '#sound1' ).live( 'pagehide',function(event){
+         $("#sound1-audio")[0].pause();
+      });
+
+
+      $( '#sound2' ).live( 'pageshow',function(event){
+        $("#sound2-audio")[0].currentTime = 0;
+        $("#sound2-audio")[0].play();
+      });
+
+      $( '#sound2' ).live( 'pagehide',function(event){
+        $("#sound2-audio")[0].pause();
+      });
+
+
+      $( '#sound3' ).live( 'pageshow',function(event){
+        $("#sound3-audio")[0].currentTime = 0;
+        $("#sound3-audio")[0].play();
+      });
+
+      $( '#sound3' ).live( 'pagehide',function(event){
+        $("#sound3-audio")[0].pause();
+      });
+
+    </script>
+    
+    <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+    
+  </head>
+  <body>
+    <div data-role="page" id="home">
+      <div data-role="header">
+        <h1>Home</h1>
+      </div>
+      
+      <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+          <li><a href="#sound1">Sound 1</a></li>
+          <li><a href="#sound2">Sound 2</a></li>
+          <li><a href="#sound3">Sound 3</a></li>
+        </ul>
+      </div>
+      
+      <div data-role="footer">
+        <h4>&copy; 2011</h4>
+      </div>
+    </div>
+    
+
+
+
+
+
+    <div data-role="page" id="sound1" data-add-back-btn="true">
+      <div data-role="header" >
+        <h1>Sound1</h1>
+      </div>
+      
+      <div data-role="content">
+        <div class='player' style=''><audio id="sound1-audio" preload="auto" src='audio/sound1.mp3' controls='true' style='height: 40px; width: 100%;'>Your browser does not support the audio HTML5 tag.</audio></div>
+      </div>
+      
+      <div data-role="footer">
+        <h4>&copy; 2011</h4>
+      </div>
+    </div>
+
+
+
+
+    <div data-role="page" id="sound2" data-add-back-btn="true">
+      <div data-role="header" >
+        <h1>Sound2</h1>
+      </div>
+      
+      <div data-role="content">
+        <div class='player' style=''><audio id="sound2-audio" preload="auto" src='audio/sound2.mp3' controls='true' style='height: 40px; width: 100%;'>Your browser does not support the audio HTML5 tag.</audio></div>
+      </div>
+      
+      <div data-role="footer">
+        <h4>&copy; 2011</h4>
+      </div>
+    </div>
+
+
+
+
+    <div data-role="page" id="sound3" data-add-back-btn="true">
+      <div data-role="header" >
+        <h1>Sound3</h1>
+      </div>
+      
+      <div data-role="content">
+        <div class='player' style=''><audio id="sound3-audio" preload="auto" src='audio/sound3.mp3' controls='true' style='height: 40px; width: 100%;'>Your browser does not support the audio HTML5 tag.</audio></div>
+      </div>
+      
+      <div data-role="footer">
+        <h4>&copy; 2011</h4>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
