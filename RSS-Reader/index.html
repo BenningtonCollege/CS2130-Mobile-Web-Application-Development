@@ -5,12 +5,10 @@
 
       <script type="text/javascript">
         var rssurl = "http://apod.nasa.gov/apod.rss";
-        
-        console.log(rssurl);
-        
+                
         $.get(rssurl, function(data) {
             var xml = $(data);
-            console.log(xml);
+
             xml.find("item").each(function() {
                 var that = $(this),
                     item = {
