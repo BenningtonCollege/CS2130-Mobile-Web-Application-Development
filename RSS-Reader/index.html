@@ -19,9 +19,7 @@
                         author: that.find("author").text()
                     }
                     
-                $("#content")[0].innerHTML += "<a href='" + item.link + "'>" +
-                                              item.title + "</a><br />" +
-                                              item.description ;
+                $("#content")[0].innerHTML += item.description ;
             });
         });
       </script>
