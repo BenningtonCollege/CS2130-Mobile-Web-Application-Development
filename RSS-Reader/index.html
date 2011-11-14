@@ -4,7 +4,7 @@
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
       <script type="text/javascript">
-        var rssurl = "http://apod.nasa.gov/apod.rss";
+        var rssurl = "http://feeds.nytimes.com/nyt/rss/HomePage";
                 
         $.get(rssurl, function(data) {
             var xml = $(data);
@@ -19,7 +19,11 @@
                         author: that.find("author").text()
                     }
                     
-                $("#content")[0].innerHTML += item.description ;
+                $("#content")[0].innerHTML = 
+                      $("#content")[0].innerHTML + 
+                      "<h1><a href='" + item.link + "'>" + item.title + "</a></h1>" +
+                      item.pubDate + "<br />" +
+                      item.description ;
             });
         });
       </script>
