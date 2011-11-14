@@ -51,6 +51,11 @@ function initDB() {
   
 }
 
+
+/******************************************
+    BEGIN INSERT HANDLERS
+******************************************/
+
 function successHandler(transaction, results) {
     //alert('ok');
     return true;
@@ -79,6 +84,9 @@ function insert(item) {
   );
 }
 
+/******************************************
+    BEGIN POPULATE HANDLERS
+******************************************/
 
 function successHandler_populate(transaction, results) {
     
@@ -102,7 +110,7 @@ function populateHomePage() {
       function(transaction) {
           transaction.executeSql(
               selectSql,
-              [],
+              [ ],
               successHandler_populate,
               errorHandler
           );
@@ -136,8 +144,16 @@ function readRSS(rssurl) {
 
 
 function submitForm() {
-  localStorage.firstname = $("#firstname").val();
-  localStorage.lastname  = $("#lastname").val();
+  localStorage.feed = $("#feed").val();
   history.back();
 }
+
+
+
+
+
+
+
+
+
 
