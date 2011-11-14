@@ -1,0 +1,11 @@
+/* Center IMG elements that have the attribute class="centered"  */
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center DIV and P elements that have the attribute class="centered"  */
+div.centered, p.centered {
+  text-align: center;
+}
