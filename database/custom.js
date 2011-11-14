@@ -1,15 +1,28 @@
 $(document).bind("mobileinit", function() {
   $.mobile.page.prototype.options.addBackBtn = true;
   
+  if ( (localStorage.feed === undefined) || (localStorage.feed === "") ){
+    localStorage.feed = "http://www.wizards.com/dnd/Globals/Services/ArticleFeed.aspx";
+  }
+
   initDB();
+  readRSS(localStorage.feed);
 });
 
-$('#home').live('pageinit', function(event, ui) {
-  
-  readRSS("http://apod.nasa.gov/apod.rss");
-  
-  $("#useroption")[0].innerHTML = localStorage.firstname + " " + localStorage.lastname;
+$('#home').live('pageinit', function(event, ui) {    
+  populateHomePage();
 });
+
+
+
+
+$('#settings').live('pageinit', function(event, ui) {
+  // Setting the value of form fields
+  $("#feed").val(localStorage.feed);
+});
+
+
+
 
 
 var db;
@@ -31,7 +44,8 @@ function initDB() {
   db = openDatabase(shortName, version, displayName, maxSize);
   db.transaction(
       function(transaction) {
-          transaction.executeSql(createSql);
+        transaction.executeSql(createSql);
+        //transaction.executeSql("delete from posts;");
       }
   );
   
@@ -64,6 +78,39 @@ function insert(item) {
       }
   );
 }
+
+
+function successHandler_populate(transaction, results) {
+    
+    for (var i = 0; i < results.rows.length; i++) {
+      // console.log(results.rows.item(i).title);
+
+      // populate home screen with links
+      $("#feeditems li:last").clone().removeClass("ui-corner-top ui-corner-bottom").appendTo("#feeditems");
+      $("#feeditems li:last a")[0].innerHTML = results.rows.item(i).title;
+      $("#feeditems li:last a")[0].href = results.rows.item(i).link;
+
+    }
+    
+    return true;
+}
+
+function populateHomePage() {
+  var selectSql = 'SELECT * FROM posts';
+    
+  db.transaction(
+      function(transaction) {
+          transaction.executeSql(
+              selectSql,
+              [],
+              successHandler_populate,
+              errorHandler
+          );
+      }
+  );
+}
+
+
 
 function readRSS(rssurl) {
           

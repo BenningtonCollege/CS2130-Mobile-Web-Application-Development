@@ -16,13 +16,12 @@
     <div data-role="page" id="home">
       <div data-role="header">
         <h1>Home</h1>
+        <a href="#settings" data-icon="gear" class="ui-btn-right" data-transition="slideup">Settings</a>
       </div>
 
       <div data-role="content">
-        <ul data-role="listview" data-inset="true">
-          <li><a href="#userProfile" id="useroption">Option a</a></li>
-          <li><a href="#b">Option b</a></li>
-          <li><a href="#settings" data-transition="slideup">Settings</a></li>
+        <ul data-role="listview" data-inset="true" id="feeditems">
+          <li><a href="#placeholder">Placeholder</a></li>
         </ul>
       </div>
 
@@ -34,20 +33,19 @@
     
     
     
-    <div data-role="page" id="settings">
+    <div data-role="page" id="settings" data-add-back-btn="false">
       <div data-role="header">
         <h1>Settings</h1>
+        <a href="javascript:history.back();" class="ui-btn-right" data-transition="reverse">Cancel</a>
       </div>
       
       <form id="myform" action="javascript:submitForm();" method="post" data-ajax="false">
         
       <div data-role="content">
         <ul data-role="listview">
-          <li><label for="firstname">First name</label>
-              <input type="text" name="firstname" id="firstname"></li>
-          <li><label for="lastname">Last name</label>
-              <input type="text" name="lastname" id="lastname"></li>
-          <li><button name="submit" value="submit-value">Submit</button></li>
+          <li><label for="feed">RSS Feed URL</label>
+              <input type="text" name="feed" id="feed"></li>
+          <li><button name="submit" value="submit-value">Save</button></li>
         </ul>
       </div>
       
