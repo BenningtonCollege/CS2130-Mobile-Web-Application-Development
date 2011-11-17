@@ -6,10 +6,10 @@ $(document).bind("mobileinit", function() {
   }
 
   initDB();
-  readRSS(localStorage.feed);
 });
 
 $('#home').live('pageinit', function(event, ui) {    
+  readRSS(localStorage.feed);
   populateHomePage();
 });
 
@@ -36,7 +36,7 @@ function initDB() {
                    (id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,       \
                    pubdate     TEXT,                                             \
                    title       TEXT,                                             \
-                   link        TEXT,                                             \
+                   link        TEXT UNIQUE,                                      \
                    description TEXT,                                             \
                    author      TEXT );                                           \
    ';
@@ -44,7 +44,11 @@ function initDB() {
   db = openDatabase(shortName, version, displayName, maxSize);
   db.transaction(
       function(transaction) {
-        transaction.executeSql(createSql);
+        transaction.executeSql(createSql,
+                               [],
+                               successHandler,
+                               errorHandler
+        );
         //transaction.executeSql("delete from posts;");
       }
   );
@@ -57,13 +61,15 @@ function initDB() {
 ******************************************/
 
 function successHandler(transaction, results) {
-    //alert('ok');
-    return true;
+  //alert('ok');
+  return true;
 }
 
 function errorHandler(transaction, error) {
+  if (error.code !== 1) {
     alert('Error: ' + error.message + ' (Code ' + error.code + ')');
-      return true;
+  }
+  return true;
 }
 
 
@@ -89,14 +95,34 @@ function insert(item) {
 ******************************************/
 
 function successHandler_populate(transaction, results) {
-    
+    var li;
     for (var i = 0; i < results.rows.length; i++) {
       // console.log(results.rows.item(i).title);
 
       // populate home screen with links
-      $("#feeditems li:last").clone().removeClass("ui-corner-top ui-corner-bottom").appendTo("#feeditems");
+      if (i === 0) {
+        li = $("#feeditems li:last");
+      } else {
+        li = $("#feeditems li:last").clone();;
+      }
+      
+      if ( i === 0 ) {
+        li.addClass("ui-corner-top");
+      } else {
+        li.removeClass("ui-corner-top");
+      }
+      
+      if ( i === (results.rows.length - 1) ) {
+        // it's not the last list item
+        li.addClass("ui-corner-bottom");
+      } else {
+        li.removeClass("ui-corner-bottom");
+      }
+      
       $("#feeditems li:last a")[0].innerHTML = results.rows.item(i).title;
       $("#feeditems li:last a")[0].href = results.rows.item(i).link;
+
+      li.appendTo("#feeditems");
 
     }
     
