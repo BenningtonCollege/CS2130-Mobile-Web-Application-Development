@@ -14,6 +14,11 @@ $('#home').live('pageinit', function(event, ui) {
 });
 
 
+$('a').live('click', function(event, ui) {    
+  console.log(event.target.id);
+});
+
+
 
 
 $('#settings').live('pageinit', function(event, ui) {
@@ -56,39 +61,7 @@ function initDB() {
 }
 
 
-/******************************************
-    BEGIN INSERT HANDLERS
-******************************************/
 
-function successHandler(transaction, results) {
-  //alert('ok');
-  return true;
-}
-
-function errorHandler(transaction, error) {
-  if (error.code !== 1) {
-    alert('Error: ' + error.message + ' (Code ' + error.code + ')');
-  }
-  return true;
-}
-
-
-function insert(item) {
-  var insertSql = 'INSERT INTO posts (title, link, description, author, pubdate)   \
-                   VALUES (?, ?, ?, ?, ?);                                         \
-  ';
-    
-  db.transaction(
-      function(transaction) {
-          transaction.executeSql(
-              insertSql,
-              [item.title, item.link, item.description, item.author, item.pubdate],
-              successHandler,
-              errorHandler
-          );
-      }
-  );
-}
 
 /******************************************
     BEGIN POPULATE HANDLERS
@@ -120,7 +93,8 @@ function successHandler_populate(transaction, results) {
       }
       
       $("#feeditems li:last a")[0].innerHTML = results.rows.item(i).title;
-      $("#feeditems li:last a")[0].href = results.rows.item(i).link;
+      $("#feeditems li:last a")[0].id = results.rows.item(i).id;
+      $("#feeditems li:last a")[0].href = "#detail"; //results.rows.item(i).link;
 
       li.appendTo("#feeditems");
 
@@ -146,6 +120,49 @@ function populateHomePage() {
 
 
 
+/******************************************
+    BEGIN INSERT HANDLERS
+******************************************/
+
+function successHandler(transaction, results) {
+  //alert('ok');
+  return true;
+}
+
+function errorHandler(transaction, error) {
+  // ignore constraint failure errors... we're probably trying to insert a duplicate item
+  if (error.code !== 1) {
+    alert('Error: ' + error.message + ' (Code ' + error.code + ')');
+  }
+  return true;
+}
+
+
+function insert(item) {
+  var insertSql = 'INSERT INTO posts (title, link, description, author, pubdate)   \
+                   VALUES (?, ?, ?, ?, ?);                                         \
+  ';
+    
+  db.transaction(
+      function(transaction) {
+          transaction.executeSql(
+              insertSql,
+              [item.title, item.link, item.description, item.author, item.pubdate],
+              successHandler,
+              errorHandler
+          );
+      }
+  );
+}
+
+
+
+/******************************************
+    BEGIN RSS FEED HANDLERS
+******************************************/
+
+
+
 function readRSS(rssurl) {
           
   $.get(rssurl, function(data) {
@@ -154,11 +171,11 @@ function readRSS(rssurl) {
       xml.find("item").each(function() {
           var that = $(this),
               item = {
-                  title: that.find("title").text(),
-                  link: that.find("link").text(),
+                  title:       that.find("title").text(),
+                  link:        that.find("link").text(),
                   description: that.find("description").text(),
-                  pubDate: that.find("pubDate").text(),
-                  author: that.find("author").text()
+                  pubDate:     that.find("pubDate").text(),
+                  author:      that.find("author").text()
               }
               
           insert(item);
