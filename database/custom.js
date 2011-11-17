@@ -14,8 +14,9 @@ $('#home').live('pageinit', function(event, ui) {
 });
 
 
-$('a').live('click', function(event, ui) {    
-  console.log(event.target.id);
+$('#home div[data-role="content"] a').live('click', function(event, ui) {    
+  //console.log(event.target.id);
+  populateDetailPage(event.target.id);
 });
 
 
@@ -37,7 +38,7 @@ function initDB() {
   var displayName = 'apod';
   var maxSize = 65536;
   
-  var createSql = 'CREATE TABLE IF NOT EXISTS posts                              \
+  var sql       = 'CREATE TABLE IF NOT EXISTS posts                              \
                    (id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,       \
                    pubdate     TEXT,                                             \
                    title       TEXT,                                             \
@@ -49,7 +50,7 @@ function initDB() {
   db = openDatabase(shortName, version, displayName, maxSize);
   db.transaction(
       function(transaction) {
-        transaction.executeSql(createSql,
+        transaction.executeSql(sql,
                                [],
                                successHandler,
                                errorHandler
@@ -104,12 +105,12 @@ function successHandler_populate(transaction, results) {
 }
 
 function populateHomePage() {
-  var selectSql = 'SELECT * FROM posts';
+  var sql = 'SELECT * FROM posts';
     
   db.transaction(
       function(transaction) {
           transaction.executeSql(
-              selectSql,
+              sql,
               [ ],
               successHandler_populate,
               errorHandler
@@ -117,6 +118,52 @@ function populateHomePage() {
       }
   );
 }
+
+
+
+
+/******************************************
+    BEGIN DETAIL HANDLERS
+******************************************/
+
+function successHandler_detail(transaction, results) {
+    for (var i = 0; i < results.rows.length; i++) {
+
+      // populate home screen with links
+      
+      $("#detail div[data-role='content']")[0].innerHTML  = "<div><h1>" +
+                                                            "<a href='" + results.rows.item(i).link + "' rel='extern' target='_blank'>" +
+                                                            results.rows.item(i).title +
+                                                            "</a>" +
+                                                            "</h1>" +
+                                                            "<p>" +
+                                                            results.rows.item(i).description +
+                                                            "</p></div>";
+     
+      $("#detail div[data-role='content']").addClass("ui-body-b");
+    }
+    
+    return true;
+}
+
+function populateDetailPage(id) {
+  var sql = 'SELECT * FROM posts WHERE id=' + id;
+    
+  db.transaction(
+      function(transaction) {
+          transaction.executeSql(
+              sql,
+              [ ],
+              successHandler_detail,
+              errorHandler
+          );
+      }
+  );
+}
+
+
+
+
 
 
 
